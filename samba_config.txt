@@ -1,0 +1,23 @@
+sharing files to linux vice versa
+---------------------------------------
+network adapter:nat
+[root@localhost /]# mkdir sharingtowin
+[root@localhost /]# chmod -R 0775 sharingtowin
+[root@localhost /]# chown -R sai:sai /sharingtowin
+[root@localhost /]# chcon -t samba_share_t /sharingtowin
+to check which type like samba_share_t
+[root@localhost /]# ls -dZ - /sharingtowin
+default_t
+so,samba_share_t
+[root@localhost /]# vi etc/samba/smb.conf
+[sharing]
+        comment = Anonymous File Server Share
+        path = /sharingtowin
+        browsable =yes
+        writable = yes
+        guest ok = yes
+        read only = no
+        force user = sai
+[root@localhost /]# testparm
+[root@localhost /]# systemctl restart smb
+
