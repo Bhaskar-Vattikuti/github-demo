@@ -20,5 +20,5 @@ so,samba_share_t
         force user = sai
 [root@localhost /]# testparm
 [root@localhost /]# systemctl restart smb
-updated
+updated-1
 
